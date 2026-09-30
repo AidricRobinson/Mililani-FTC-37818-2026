@@ -26,7 +26,7 @@ public class FlywheelSubsystem2 {
 //    public double getFlywheelVelocity(){
 //        return FlywheelMotor.getVelocity();
 //    }
-// //maybe
+// //mayb
     public void shutdown(){
         FlywheelMotor.setPower(0);
     }
