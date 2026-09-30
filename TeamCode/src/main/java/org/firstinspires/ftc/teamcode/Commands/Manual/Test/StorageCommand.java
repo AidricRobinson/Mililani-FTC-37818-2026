@@ -7,7 +7,7 @@ public class StorageCommand {
     StorageSubsystem storageSubsystem;
     Gamepad gamepad;
 
-    StorageCommand(StorageSubsystem storageSubsystem, Gamepad gamepad){
+    public StorageCommand(StorageSubsystem storageSubsystem, Gamepad gamepad){
         this.storageSubsystem = storageSubsystem;
         this.gamepad = gamepad;
     }
