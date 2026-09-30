@@ -12,6 +12,7 @@ public class Constants {
         public static final double kWHEEL_CIRCUMFERENCE = kWHEEL_DIAMETER * Math.PI;
         public static final double kCOUNTS_PER_INCH = (kCOUNTS_PER_ROTATION * kGEAR_DRIVE_REDUCTION) / kWHEEL_CIRCUMFERENCE;
     }
+    //yes
 
     public static class MotorConstants {
         public static final DcMotorEx.Direction shooterDirection = DcMotorEx.Direction.FORWARD;
