@@ -1,0 +1,34 @@
+package org.firstinspires.ftc.teamcode.Commands.Manual.Test;
+import com.qualcomm.robotcore.hardware.Gamepad;
+import org.firstinspires.ftc.teamcode.Subsystems.StorageSubsystem;
+
+public class StorageCommand {
+
+    StorageSubsystem storageSubsystem;
+    Gamepad gamepad;
+
+    StorageCommand(StorageSubsystem storageSubsystem, Gamepad gamepad){
+        this.storageSubsystem = storageSubsystem;
+        this.gamepad = gamepad;
+    }
+    public void operate(Gamepad gamepad){
+        if (gamepad.a){
+            storageSubsystem.setStoragePower(1);//tbd
+        }
+        else if(gamepad.b){
+            storageSubsystem.setStoragePower(0.5);
+        }
+        else if (gamepad.x){
+            storageSubsystem.setStoragePower(-1);//tbd
+        }
+        else if(gamepad.y){
+            storageSubsystem.setStoragePower(-0.5);
+        }
+        else {
+            storageSubsystem.setStoragePower(0);
+        }
+    }
+    public void shutdown(){
+        storageSubsystem.shutdown();
+    }
+}
