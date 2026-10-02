@@ -14,7 +14,8 @@ public class FlywheelSubsystem2 {
 //        FlywheelMotor.setMode(DcMotorEx.RunMode.RUN_WITHOUT_ENCODER);
 //        FlywheelMotor.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.FLOAT);
     }
-    public void setFlywheelPower(double power){ FlywheelMotor.setPower(power);
+    public void setFlywheelPower(double power){
+        FlywheelMotor.setPower(power);
     }
 //    public double getFlywheelEncoder(){
 //        return FlywheelMotor.getCurrentPosition();
