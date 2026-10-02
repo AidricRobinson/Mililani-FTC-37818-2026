@@ -9,7 +9,7 @@ import org.firstinspires.ftc.teamcode.Subsystems.*;
 
 @TeleOp(name="TestTeleOp")
 
-public class TestTeleOp2 extends OpMode {
+public class TestTeleOp extends OpMode {
     //declaring subsystems and commands here
     private FlywheelSubsystem2 flywheelSubsystem2;
     private FlywheelCommand2 flywheelCommand2;
