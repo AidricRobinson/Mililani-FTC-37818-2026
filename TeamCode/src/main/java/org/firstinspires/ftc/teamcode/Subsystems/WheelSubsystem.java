@@ -1,14 +1,21 @@
 package org.firstinspires.ftc.teamcode.Subsystems;
 import androidx.appcompat.widget.ButtonBarLayout;
 
+import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Gamepad;
 
+import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
+import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.opencv.features2d.FlannBasedMatcher;
 
 public class WheelSubsystem {
 
+    BNO055IMU imu;
+    private final BNO055IMU.Parameters parameters;
     DcMotorEx FLMotor;
     DcMotorEx FRMotor;
     DcMotorEx BLMotor;
@@ -17,6 +24,11 @@ public class WheelSubsystem {
 
 
     public WheelSubsystem(OpMode opMode) {
+
+        imu = opMode.hardwareMap.get(BNO055IMU.class, "imu");
+        parameters = new BNO055IMU.Parameters();
+        imu.initialize(parameters);
+
         FLMotor = opMode.hardwareMap.get(DcMotorEx.class, "FL");
         FRMotor = opMode.hardwareMap.get(DcMotorEx.class, "FR");
         BLMotor = opMode.hardwareMap.get(DcMotorEx.class, "BL");
@@ -89,5 +101,9 @@ public class WheelSubsystem {
         BLMotor.setPower(0);
         BRMotor.setPower(0);
     }
+    public double getYaw(){
+        return imu.getAngularOrientation(AxesReference.EXTRINSIC, AxesOrder.XYZ, AngleUnit.DEGREES).thirdAngle;
+    }
+
 
 }
