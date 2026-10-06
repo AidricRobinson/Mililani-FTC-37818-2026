@@ -2,13 +2,13 @@ package org.firstinspires.ftc.teamcode.Commands.Manual.Test;
 
 import com.qualcomm.robotcore.hardware.Gamepad;
 
-import org.firstinspires.ftc.teamcode.Subsystems.FlywheelSubsystem2;
+import org.firstinspires.ftc.teamcode.Subsystems.FlywheelSubsystem;
 
-public class FlywheelCommand2 {
-    FlywheelSubsystem2 flywheelSubsystem2;
+public class FlywheelCommand {
+    FlywheelSubsystem flywheelSubsystem2;
     Gamepad gamepad;
 
-    public FlywheelCommand2(FlywheelSubsystem2 flywheelSubsystem2, Gamepad gamepad){
+    public FlywheelCommand(FlywheelSubsystem flywheelSubsystem2, Gamepad gamepad){
         this.flywheelSubsystem2 = flywheelSubsystem2;
         this.gamepad = gamepad;
     }

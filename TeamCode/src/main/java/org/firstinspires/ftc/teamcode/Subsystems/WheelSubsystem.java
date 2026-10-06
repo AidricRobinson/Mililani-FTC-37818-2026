@@ -5,6 +5,8 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Gamepad;
 
+import org.opencv.features2d.FlannBasedMatcher;
+
 public class WheelSubsystem {
 
     DcMotorEx FLMotor;
@@ -12,11 +14,23 @@ public class WheelSubsystem {
     DcMotorEx BLMotor;
     DcMotorEx BRMotor;
 
+
+
     public WheelSubsystem(OpMode opMode) {
         FLMotor = opMode.hardwareMap.get(DcMotorEx.class, "FL");
         FRMotor = opMode.hardwareMap.get(DcMotorEx.class, "FR");
         BLMotor = opMode.hardwareMap.get(DcMotorEx.class, "BL");
         BRMotor = opMode.hardwareMap.get(DcMotorEx.class, "BR");
+
+        FLMotor.setMode(DcMotorEx.RunMode.RUN_WITHOUT_ENCODER);
+        BLMotor.setMode(DcMotorEx.RunMode.RUN_WITHOUT_ENCODER);
+        FRMotor.setMode(DcMotorEx.RunMode.RUN_WITHOUT_ENCODER);
+        BRMotor.setMode(DcMotorEx.RunMode.RUN_WITHOUT_ENCODER);
+        // Motor spin sides
+        FLMotor.setDirection( DcMotorEx.Direction.FORWARD);
+        BLMotor.setDirection( DcMotorEx.Direction.FORWARD);
+        FRMotor.setDirection( DcMotorEx.Direction.FORWARD);
+        BRMotor.setDirection( DcMotorEx.Direction.FORWARD);
     }
     public void setFLPower(double power){
         FLMotor.setPower(power);
@@ -51,8 +65,23 @@ public class WheelSubsystem {
 
     }
 
+    public void resetEncoder(){
+        FLMotor.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
+        BLMotor.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
+        FRMotor.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
+        BRMotor.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
+    }
 
+    // Method to gather encoder counts
+    public double[] encoderReading () {
+        double[] encoderReading = new double[4];
+        encoderReading[0] = FLMotor.getCurrentPosition();
+        encoderReading[1] = BLMotor.getCurrentPosition();
+        encoderReading[2] = FRMotor.getCurrentPosition();
+        encoderReading[3] = BRMotor.getCurrentPosition();
 
+        return encoderReading;
+    }
 
     public void shutdown(){
         FLMotor.setPower(0);
