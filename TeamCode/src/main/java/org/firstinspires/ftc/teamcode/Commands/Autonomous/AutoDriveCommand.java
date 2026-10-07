@@ -13,17 +13,17 @@ public class AutoDriveCommand {
         this.wheelSubsystem = wheelSubsystem;
         this.pidController = new PIDController(0.0001, 0.05);
     }
-    public void AutoDrive(double distanceInches){
+    public void AutoDrive(double distanceInches) {
         wheelSubsystem.resetEncoder();
         setPoint = distanceInches * Constants.EncoderConstants.kCOUNTS_PER_INCH;
         pidController.setSetPoint(setPoint);
-        while(true){
+        while (true) {
             pidController.calculateError(wheelSubsystem.encoderReading()[0]);
             wheelSubsystem.setBLPower(pidController.calculateOutput());
             wheelSubsystem.setBRPower(pidController.calculateOutput());
             wheelSubsystem.setFLPower(pidController.calculateOutput());
             wheelSubsystem.setFRPower(pidController.calculateOutput());
-            if(Math.abs(pidController.calculateError(wheelSubsystem.encoderReading()[0])) < 10){
+            if (Math.abs(pidController.calculateError(wheelSubsystem.encoderReading()[0])) < 10) {
                 break;
             }
         }
